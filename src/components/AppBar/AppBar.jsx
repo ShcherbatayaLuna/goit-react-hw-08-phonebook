@@ -1,17 +1,26 @@
 import Navigation from '../Navigation/Navigation';
 import UserMenu from '../UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import Toolbar from '@mui/material/Toolbar';
+import { Button, Link } from './AppBar.styled';
 
 export default function AppBar() {
   const logIn = useSelector(selectIsLoggedIn);
+
   return (
-    <div>
-      <div>
-        <Link to="/">Phonebook</Link>
-      </div>
+    <Toolbar
+      sx={{
+        borderBottom: 1,
+        borderColor: 'divider',
+      }}
+    >
+      <Button type="button">
+        <Link to="/" size="small">
+          Phonebook
+        </Link>
+      </Button>
       {logIn ? <UserMenu /> : <Navigation />}
-    </div>
+    </Toolbar>
   );
 }
