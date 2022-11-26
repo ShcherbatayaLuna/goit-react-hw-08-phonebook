@@ -1,12 +1,20 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+
+const theme = createTheme();
 
 export default function Login() {
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const handleSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
     dispatch(
       logIn({
         email: form.elements.email.value,
@@ -15,92 +23,59 @@ export default function Login() {
     );
     form.reset();
   };
+
   return (
-    <div>
-      <p>Login</p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <p>
-            Email
-            <input placeholder="email" type="email" name="email" />
-          </p>
-          <p>
-            Password
-            <input placeholder="password" type="password" name="password" />
-          </p>
-          <button type="submit">Log In</button>
-        </div>
-      </form>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Log in
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              type="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Log In
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }
-
-// import { Box, Button, Input, Text } from '@chakra-ui/react';
-// import { useDispatch } from 'react-redux';
-// import { logInUser } from '../authOperations';
-
-// export default function Login() {
-//   const dispatch = useDispatch();
-
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     const form = e.currentTarget;
-//     dispatch(
-//       logInUser({
-//         email: form.elements.email.value,
-//         password: form.elements.password.value,
-//       })
-//     );
-//     form.reset();
-//   };
-//   return (
-//     <Box
-//       display="flex-wrap"
-//       justifyContent="center"
-//       textAlign="center"
-//       alignItems="center"
-//     >
-//       <Text marginBottom="15px" fontSize="20px" fontWeight="700" color="teal">
-//         Login
-//       </Text>
-//       <form onSubmit={handleSubmit} autoComplete="off">
-//         <Box
-//           display="flex-wrap"
-//           justifyContent="center"
-//           alignItems="center"
-//           textAlign="center"
-//           color="teal"
-//           fontWeight="600"
-//         >
-//           <Text marginBottom="15px">
-//             Email
-//             <Input
-//               alignItems="center"
-//               placeholder="email"
-//               width="auto"
-//               marginLeft="15px"
-//               type="email"
-//               name="email"
-//               color='black'
-//             />
-//           </Text>
-//           <Text marginBottom="15px">
-//             Password
-//             <Input
-//               alignItems="center"
-//               placeholder="password"
-//               width="auto"
-//               marginLeft="15px"
-//               type="password"
-//               name="password"
-//               color='black'
-//             />
-//           </Text>
-//           <Button colorScheme="teal" variant="solid" type="submit">
-//             Log In
-//           </Button>
-//         </Box>
-//       </form>
-//     </Box>
-//   );
-// }
