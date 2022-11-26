@@ -6,11 +6,11 @@ import PublicRoute from '../PublicRoute';
 import PrivateRoute from '../PrivateRoute';
 import { Container } from './App.styled';
 
-const Home = lazy(() => import('../pages/Home'));
+const Home = lazy(() => import('../pages/Home/Home'));
 const Register = lazy(() => import('../pages/Register'));
 const Login = lazy(() => import('../pages/Login'));
 const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
-const Layout = lazy(() => import('../pages/Layout'));
+const Layout = lazy(() => import('../pages/Layout/Layout'));
 
 export default function App() {
   const dispatch = useDispatch();
