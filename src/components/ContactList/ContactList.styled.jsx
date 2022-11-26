@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-
 export const List = styled.ul`
-width: 450px;
-padding: 10px;
-margin: 0;
-`
+  width: 450px;
+  padding: 10px;
+  margin: 0;
+`;
 export const ListItem = styled.li`
   display: flex;
   align-items: center;
