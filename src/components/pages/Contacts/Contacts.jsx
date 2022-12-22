@@ -21,7 +21,7 @@ export default function Contacts() {
     <Box>
       <TitlePrimary>Phonebook</TitlePrimary>
       <ContactForm />
-      {contacts && (
+      {contacts.length > 0 && (
         <>
           <TitleSecondary>Contacts</TitleSecondary>
           <Filter />
