@@ -8,19 +8,20 @@ export default function ContactList() {
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-  const lowercaseContacts = () => {
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(filter.toLowerCase())
+  const lowerCaseContacts = () => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-  const filterContacts = lowercaseContacts();
+
+  const filterContacts = lowerCaseContacts();
 
   return (
     <List>
-      {filterContacts?.map(({ id, name, phone }) => (
+      {filterContacts?.map(({ id, name, number }) => (
         <ListItem key={id}>
           <Text>
-            <b>{name}:</b> {phone}
+            <b>{name}:</b> {number}
           </Text>
           <Button type="button" onClick={() => dispatch(deleteContact(id))}>
             Delete
